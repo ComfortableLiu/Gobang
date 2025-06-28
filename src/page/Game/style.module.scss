@@ -1,0 +1,88 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+  position: relative;
+
+  .player-title {
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .checkerboard {
+    width: 612px;
+    height: 612px;
+    border: 1px solid #000;
+    background-color: rgb(249, 214, 91);
+    margin-top: 22px;
+    position: relative;
+    display: flex;
+    justify-content: stretch;
+  }
+
+  .logic-board {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    z-index: 1;
+    flex: 1;
+    background-color: transparent;
+
+    .line {
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+
+      .node {
+        cursor: pointer;
+        flex: 1;
+        border-radius: 100%;
+        box-shadow: 0 0 0 rgb(0, 0, 0);
+        font-size: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.disable {
+          cursor: default;
+        }
+
+        &:not(.disable):hover {
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+        }
+      }
+    }
+  }
+
+  .background-board {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    justify-content: space-between;
+
+    .line {
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+
+      .node {
+        flex: 1;
+        border: 0.5px solid #000;
+      }
+    }
+
+  }
+}

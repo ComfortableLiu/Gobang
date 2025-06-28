@@ -1,0 +1,22 @@
+.main {
+  width: 100%;
+  min-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    height: 300px;
+  }
+}
+
+.button-list {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  gap: 12px;
+  margin-top: 28px;
+}
