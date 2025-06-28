@@ -82,7 +82,10 @@
     // 检查 Hook 规则合法性
     "react-hooks/rules-of-hooks": "error",
     // 检查 useEffect 依赖缺失（⚠️关键）
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/no-unused-vars": [
+      "warn"
+    ]
   },
   "overrides": [
     {
