@@ -4,7 +4,8 @@
 
 ## 技术栈
 - React19
-- Rspack
+- Rspack（正经人谁用Webpack啊😁）
+- MobX（Redux用臭了，玩一个新的）
 - SASS
 - Ant Design
 - IconPark
