@@ -1,0 +1,9 @@
+{
+  "name": "@gobang/frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development rspack dev",
+    "prod": "cross-env NODE_ENV=production rspack serve --mode production",
+    "build": "cross-env NODE_ENV=production rspack build --mode production"
+  }
+}
