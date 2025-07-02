@@ -27,7 +27,13 @@
       {
         "SwitchCase": 1,
         "ignoredNodes": [
-          "TemplateLiteral *"
+          "TemplateLiteral *",
+          // 类属性
+          "PropertyDefinition",
+          // 类方法
+          "MethodDefinition",
+          // 类体中的所有元素
+          "ClassBody > *"
         ]
       }
     ],

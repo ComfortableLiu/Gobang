@@ -1,0 +1,11 @@
+{
+  "name": "@gobang/backend",
+  "version": "1.0.0",
+  "main": "../../dist/server/index.js",
+  "types": "../../dist/server/dist/index.d.ts",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nest start --watch --env-file config/env/.env.development",
+    "prod": "cross-env NODE_ENV=production node dist/index",
+    "build": "cross-env NODE_ENV=production nest build --env-file config/env/.env.production"
+  }
+}
