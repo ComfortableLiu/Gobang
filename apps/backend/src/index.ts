@@ -14,6 +14,9 @@ async function bootstrap() {
   // 全局路由前缀
   app.setGlobalPrefix('api')
 
+  // 跨域，用默认就好
+  app.enableCors()
+
   await app.listen(process.env.PORT ?? 3001)
 }
 

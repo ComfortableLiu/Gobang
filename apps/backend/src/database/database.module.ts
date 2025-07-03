@@ -19,7 +19,7 @@ export default [
       username: config.get<string>('database.username'),
       password: config.get<string>('database.password'),
       database: config.get<string>('database.database'),
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      entities: [path.resolve(__dirname, '../**/*.entity{.ts,.js}')],
       synchronize: config.get<boolean>('database.synchronize'),
     }),
   })

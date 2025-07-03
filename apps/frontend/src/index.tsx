@@ -11,11 +11,9 @@ const container = document.getElementById('app');
 if (container) {
   const root = createRoot(container);
   root.render(
-    <React.StrictMode>
-      <StoreProvider>
-        <App />
-      </StoreProvider>
-    </React.StrictMode>
+    <StoreProvider>
+      <App />
+    </StoreProvider>
   );
 } else {
   console.error('Root element not found');

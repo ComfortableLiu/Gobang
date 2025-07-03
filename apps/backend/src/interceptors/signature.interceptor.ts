@@ -9,7 +9,7 @@ export class SignatureInterceptor implements NestInterceptor {
   // 签名有效时间（毫秒），5分钟
   private readonly MAX_TIME_DIFF = 5 * 60 * 1000;
 
-  intercept(context: ExecutionContext, next: CallHandler<any>): Observable<any> | Promise<Observable<any>> {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> | Promise<Observable<any>> {
     const request = context.switchToHttp().getRequest<Request>();
     //签名字段
     const receivedSignature = request.header('x-signature');
@@ -47,11 +47,13 @@ export class SignatureInterceptor implements NestInterceptor {
     // 获取环境变量中的密钥
     const secret = process.env.SIGNATURE_SECRET || '';
 
-    // 合并所有参数（query + body）
     const params: IAnyObj = {
-      ...request.query,
-      ...request.body,
-      _timestamp: timestamp // 加入时间戳参数
+      timestamp,
+      // nonce,
+      method: request.method,
+      path: request.path || '',
+      query: request.query || {},
+      body: request.body || {}
     };
 
     // 过滤并排序参数
@@ -65,7 +67,13 @@ export class SignatureInterceptor implements NestInterceptor {
 
     // 构造待签名字符串
     const signStr = Object.entries(sortedParams)
-      .map(([key, val]) => `${key}=${val}`)
+      .map(([key, value]) => {
+        // 处理嵌套对象
+        if (typeof value === 'object' && value !== null) {
+          return `${key}=${JSON.stringify(value)}`;
+        }
+        return `${key}=${value}`;
+      })
       .join('&');
 
     // 生成HMAC-SHA256签名

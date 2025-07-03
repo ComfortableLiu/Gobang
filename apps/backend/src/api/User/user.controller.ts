@@ -12,7 +12,7 @@ export class UserController {
    * 注册一个用户，默认昵称是设备ID的前8位
    * @param req
    */
-  @Post('/register/v1')
+  @Post('/register')
   async register(@Query() req: IRegisterReq): Promise<IUserDao> {
     const deviceId = req.deviceId
     if (!deviceId) throw new BusinessException('设备ID不能为空')
@@ -28,7 +28,7 @@ export class UserController {
     })
   }
 
-  @Get('/userInfo/v1')
+  @Get('/userInfo')
   async userInfo(@Query() req: IRegisterReq): Promise<IUserDao> {
     const deviceId = req.deviceId
     if (!deviceId) throw new BusinessException('设备ID不能为空')

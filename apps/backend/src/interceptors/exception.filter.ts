@@ -2,6 +2,7 @@ import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from "@nestjs/co
 import { Request, Response } from 'express';
 import { ResponseData } from "../api/Entity/response.entity";
 import { isString } from "../utils";
+import { BusinessException } from "./business.exception";
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
@@ -31,18 +32,19 @@ export class AllExceptionsFilter implements ExceptionFilter {
           }
         }
       }
+      // 记录错误日志，这里先直接log了一下
+      console.error(`[${request.method}] ${request.url}`, exception);
     }
     // 处理自定义业务异常（可以扩展这部分）
-    else if (exception instanceof Error) {
+    else if (exception instanceof BusinessException) {
+      // 业务异常的网络状态码可以直接为200
+      status = 200
       message = exception.message;
       // 可以基于错误类型设置不同的code
       if (exception.name === 'QueryFailedError') {
         code = -2; // 数据库错误
       }
     }
-
-    // 记录错误日志，这里先直接log了一下
-    console.error(`[${request.method}] ${request.url}`, exception);
 
     // 返回统一格式的错误响应
     response.status(status).json(

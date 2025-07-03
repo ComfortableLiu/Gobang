@@ -17,8 +17,7 @@ class SignedAxios {
 
     // 创建 Axios 实例
     this.instance = axios.create({
-      url: `${this.config.host}:${this.config.port}`,
-      baseURL: `/api`, // 设置基础路径
+      baseURL: `${this.config.host}:${this.config.port}/api`, // 设置基础路径
       timeout: this.config.timeout,
       headers: {
         'Content-Type': 'application/json'
@@ -76,7 +75,7 @@ class SignedAxios {
       timestamp,
       // nonce,
       method,
-      path: config.url || '',
+      path: `/api${config.url}` || '',
       query: config.params || {},
       body: config.data || {}
     };
